@@ -30,7 +30,26 @@ const OCRContainer = () => {
       <h2>📷 OCR Technology</h2>
       <p>Upload an image and extract text using Tesseract OCR (in-browser).</p>
 
-      <input type="file" accept="image/*" onChange={handleImageChange} />
+      {/* Stylized file input */}
+      <label
+        style={{
+          display: 'inline-block',
+          padding: '10px 20px',
+          backgroundColor: '#4CAF50',
+          color: 'white',
+          borderRadius: '5px',
+          cursor: 'pointer',
+          marginBottom: '10px',
+        }}
+      >
+        📁 Choose Image
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleImageChange}
+          style={{ display: 'none' }}
+        />
+      </label>
 
       {image && (
         <>
@@ -42,7 +61,20 @@ const OCRContainer = () => {
             />
           </div>
 
-          <button onClick={extractText}>📄 Extract Text</button>
+          <button
+            onClick={extractText}
+            style={{
+              padding: '10px 20px',
+              backgroundColor: '#2196F3',
+              color: 'white',
+              border: 'none',
+              borderRadius: '5px',
+              cursor: 'pointer',
+              fontSize: '16px',
+            }}
+          >
+            📄 Extract Text
+          </button>
         </>
       )}
 
@@ -53,9 +85,13 @@ const OCRContainer = () => {
           <h3>📋 Extracted Text</h3>
           <pre
             style={{
-              background: '#f4f4f4',
+              background: '#ffffff',
+              color: '#000000',
               padding: '10px',
               borderRadius: '5px',
+              border: '1px solid #ccc',
+              maxWidth: '600px',
+              overflowX: 'auto',
             }}
           >
             {text}
@@ -63,6 +99,15 @@ const OCRContainer = () => {
           <a
             href={`data:text/plain;charset=utf-8,${encodeURIComponent(text)}`}
             download="extracted_text.txt"
+            style={{
+              display: 'inline-block',
+              marginTop: '10px',
+              padding: '8px 16px',
+              backgroundColor: '#f44336',
+              color: 'white',
+              textDecoration: 'none',
+              borderRadius: '5px',
+            }}
           >
             📥 Download Extracted Text
           </a>
