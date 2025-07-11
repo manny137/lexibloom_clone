@@ -30,13 +30,21 @@ const OCRContainer = () => {
       });
   };
 
+  const downloadText = () => {
+    const element = document.createElement("a");
+    const file = new Blob([text], { type: "text/plain" });
+    element.href = URL.createObjectURL(file);
+    element.download = "extracted_text.txt";
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+  };
+
   return (
     <div
       style={{
-        background: "#fff",
         padding: "20px",
         borderRadius: "8px",
-        boxShadow: "0 0 10px rgba(0,0,0,0.1)",
         marginTop: "20px",
       }}
     >
@@ -72,7 +80,7 @@ const OCRContainer = () => {
           style={{
             marginTop: "20px",
             padding: "10px",
-            background: "#fff",
+            background: "#fff", // 👈 white background ONLY for extracted text box
             color: "#000",
             border: "1px solid #ccc",
             borderRadius: "4px",
@@ -81,6 +89,20 @@ const OCRContainer = () => {
         >
           <h4>📝 Extracted Text:</h4>
           <p>{text}</p>
+          <button
+            onClick={downloadText}
+            style={{
+              marginTop: "10px",
+              padding: "8px 12px",
+              background: "#4CAF50",
+              color: "#fff",
+              border: "none",
+              borderRadius: "4px",
+              cursor: "pointer",
+            }}
+          >
+            ⬇️ Download Extracted Text
+          </button>
         </div>
       )}
     </div>
