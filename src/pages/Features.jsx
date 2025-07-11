@@ -236,14 +236,14 @@ const FeaturesPage = () => {
             <div className="feature-info">
               <h2>OCR Technology</h2>
               <p>
-        LexiBloom leverages advanced Optical Character Recognition (OCR) to extract text from images, scanned documents, and photographs.
-        This allows users to make printed or handwritten content accessible and searchable instantly.
-      </p>
-    </div>
-    <div className="feature-visual">
-      <div className="feature-visual-content">📷</div>
-    </div>
-  </div>
+                LexiBloom leverages advanced Optical Character Recognition (OCR) to extract text from images, scanned documents, and photographs.
+                This allows users to make printed or handwritten content accessible and searchable instantly.
+              </p>
+          </div>
+        <div className="feature-visual">
+          <div className="feature-visual-content">📷</div>
+        </div>
+       </div>
 
   {/* Insert the component here */}
   <OCRContainer />
