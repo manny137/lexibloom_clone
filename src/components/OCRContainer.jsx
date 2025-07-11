@@ -5,21 +5,27 @@ const OCRContainer = () => {
   const [image, setImage] = useState(null);
   const [text, setText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [preview, setPreview] = useState(null);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setImage(URL.createObjectURL(file));
+      setImage(file);  // keep the file itself
+      setPreview(URL.createObjectURL(file)); // just for <img> preview
       setText('');
     }
   };
 
   const extractText = async () => {
+    if (!image) return;
+
     setIsLoading(true);
+
     const worker = await createWorker('eng', 1);
     const {
       data: { text: extractedText },
     } = await worker.recognize(image);
+
     setText(extractedText);
     await worker.terminate();
     setIsLoading(false);
@@ -51,11 +57,11 @@ const OCRContainer = () => {
         />
       </label>
 
-      {image && (
+      {preview && (
         <>
           <div style={{ margin: '10px 0' }}>
             <img
-              src={image}
+              src={preview}
               alt="Uploaded"
               style={{ maxWidth: '300px', borderRadius: '5px' }}
             />
