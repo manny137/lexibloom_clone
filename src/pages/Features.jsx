@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import CTASection from '../components/CTASection';
 import '../styles/features.css';
+import EyeTracking from '../components/EyeTracking';
 
 const FeaturesPage = () => {
   const [inputText, setInputText] = useState('');
@@ -66,6 +67,7 @@ const FeaturesPage = () => {
             <li><a href="#text-to-speech" className="nav-item">Text-to-Speech</a></li>
             <li><a href="#ocr-technology" className="nav-item">OCR Technology</a></li>
             <li><a href="#eye-tracking" className="nav-item">Eye Tracking</a></li>
+
             <li><a href="#smart-adaptation" className="nav-item">Smart Adaptation</a></li>
           </ul>
         </div>
@@ -224,6 +226,25 @@ const FeaturesPage = () => {
               </div>
             </div>
           </div>
+        </section>
+
+        {/* === Eye Tracking Section === */}
+        <section className="feature-section" id="eye-tracking">
+          <div className="feature-header">
+            <div className="feature-info">
+              <h2>Eye Tracking & Focus Detection</h2>
+              <p>
+                LexiBloom uses camera-based eye-tracking to monitor the reader's gaze and attention while reading.
+                This feature detects when users slow down or lose focus, enabling intelligent support.
+              </p>
+            </div>
+            <div className="feature-visual">
+              <div className="feature-visual-content">👁️</div>
+            </div>
+          </div>
+
+          {/* Insert the component here */}
+          <EyeTracking />
         </section>
       </div>
 
