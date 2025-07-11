@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import CTASection from '../components/CTASection';
 import '../styles/features.css';
+import OCRContainer from '../components/OCRContainer';
 import EyeTracking from '../components/EyeTracking';
 
 const FeaturesPage = () => {
@@ -228,6 +229,26 @@ const FeaturesPage = () => {
           </div>
         </section>
 
+
+        {/* === OCR Technology Section === */}
+        <section className="feature-section" id="ocr-technology">
+          <div className="feature-header">
+            <div className="feature-info">
+              <h2>OCR Technology</h2>
+              <p>
+        LexiBloom leverages advanced Optical Character Recognition (OCR) to extract text from images, scanned documents, and photographs.
+        This allows users to make printed or handwritten content accessible and searchable instantly.
+      </p>
+    </div>
+    <div className="feature-visual">
+      <div className="feature-visual-content">📷</div>
+    </div>
+  </div>
+
+  {/* Insert the component here */}
+  <OCRContainer />
+</section>
+
         {/* === Eye Tracking Section === */}
         <section className="feature-section" id="eye-tracking">
           <div className="feature-header">
@@ -238,10 +259,10 @@ const FeaturesPage = () => {
                 This feature detects when users slow down or lose focus, enabling intelligent support.
               </p>
             </div>
-            <div className="feature-visual">
-              <div className="feature-visual-content">👁️</div>
-            </div>
+          <div className="feature-visual">
+            <div className="feature-visual-content">👁️</div>
           </div>
+         </div>
 
           {/* Insert the component here */}
           <EyeTracking />
