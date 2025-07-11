@@ -2,31 +2,37 @@ import React, { useState } from 'react';
 import { createWorker } from 'tesseract.js';
 
 const OCRContainer = () => {
-  const [image, setImage] = useState(null);
+  const [file, setFile] = useState(null); // actual File to send
+  const [preview, setPreview] = useState(null); // blob url for <img>
   const [text, setText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [preview, setPreview] = useState(null);
 
   const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImage(file);  // keep the file itself
-      setPreview(URL.createObjectURL(file)); // just for <img> preview
+    const selected = e.target.files[0];
+    if (selected) {
+      setFile(selected); // save the File
+      setPreview(URL.createObjectURL(selected)); // preview
       setText('');
     }
   };
 
   const extractText = async () => {
-    if (!image) return;
-
+    if (!file) return;
     setIsLoading(true);
 
     const worker = await createWorker('eng', 1);
-    const {
-      data: { text: extractedText },
-    } = await worker.recognize(image);
 
-    setText(extractedText);
+    try {
+      const {
+        data: { text: extractedText },
+      } = await worker.recognize(file);
+
+      setText(extractedText);
+    } catch (err) {
+      console.error(err);
+      setText('❌ Failed to extract text.');
+    }
+
     await worker.terminate();
     setIsLoading(false);
   };
