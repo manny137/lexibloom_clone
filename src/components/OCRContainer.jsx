@@ -62,7 +62,7 @@ const OCRContainer = () => {
             {text}
           </pre>
           <a
-            href={data:text/plain;charset=utf-8,${encodeURIComponent(text)}}
+            href={data:text/plain;charset=utf-8,${encodeURIComponent(text)}`}
             download="extracted_text.txt"
           >
             📥 Download Extracted Text
