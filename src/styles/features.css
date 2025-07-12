@@ -1111,3 +1111,101 @@ div[id^="webgazerPredictionPoint"] {
   opacity: 0.8 !important;
 }
 
+
+/* === Text-to-Speech Component === */
+
+.tts-container {
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background-color: #1e293b;
+  color: #f8fafc;
+  max-width: 720px;
+  border: 1px solid #334155;
+  box-shadow: 0 0 18px rgba(100, 149, 237, 0.1);
+}
+
+.tts-container h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: #e2e8f0;
+}
+
+.tts-container textarea {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #0f172a;
+  color: #f1f5f9;
+  border: 1px solid #475569;
+  border-radius: 6px;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+.tts-container input[type="file"] {
+  margin-top: 0.5rem;
+  color: #e2e8f0;
+}
+
+.tts-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.tts-controls label {
+  flex: 1 1 220px;
+  font-size: 0.95rem;
+  color: #cbd5e1;
+}
+
+.tts-controls select,
+.tts-controls input[type="range"] {
+  width: 100%;
+  margin-top: 0.3rem;
+  background-color: #0f172a;
+  color: #f8fafc;
+  border: 1px solid #475569;
+  border-radius: 4px;
+}
+
+.tts-buttons {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.tts-buttons button {
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tts-buttons button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.tts-buttons .play-btn {
+  background-color: #22c55e;
+  color: white;
+}
+
+.tts-buttons .stop-btn {
+  background-color: #ef4444;
+  color: white;
+}
+
+.tts-status {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #cbd5e1;
+}
