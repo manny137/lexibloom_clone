@@ -1,6 +1,7 @@
 
 
 
+
 import React, { useState, useEffect, useRef } from "react";
 import "../styles/features.css"; // Ensure this path is correct
 
@@ -12,6 +13,7 @@ const TextToSpeech = () => {
   const [pitch, setPitch] = useState(1);
   const [speaking, setSpeaking] = useState(false);
   const [fileText, setFileText] = useState("");
+
 
   const utteranceRef = useRef(null);
 
@@ -161,4 +163,6 @@ const TextToSpeech = () => {
   );
 };
 
+
 export default TextToSpeech;
+

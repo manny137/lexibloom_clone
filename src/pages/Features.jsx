@@ -195,7 +195,7 @@ const FeaturesPage = () => {
         </section>
 
         {/* Text to Speech */}
-         <section className="feature-section" id="text-to-speech">
+        <section className="feature-section" id="text-to-speech">
           <div className="feature-header">
             <div className="feature-info">
               <h2>Text-to-Speech</h2>
@@ -210,6 +210,7 @@ const FeaturesPage = () => {
           </div>
        <TextToSpeech />
        </section>
+
         {/* OCR */}
         <section className="feature-section" id="ocr-technology">
           <div className="feature-header">
