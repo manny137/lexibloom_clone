@@ -6,6 +6,7 @@ import CTASection from '../components/CTASection';
 import '../styles/features.css';
 import OCRContainer from '../components/OCRContainer';
 import EyeTracking from '../components/EyeTracking';
+import TextToSpeech from '../components/TextToSpeech';
 
 const FeaturesPage = () => {
   const [inputText, setInputText] = useState('');
@@ -193,7 +194,7 @@ const FeaturesPage = () => {
           </div>
         </section>
 
-        {/* OCR Section */}
+        {/* OCR */}
         <section className="feature-section" id="ocr-technology">
           <div className="feature-header">
             <div className="feature-info">
