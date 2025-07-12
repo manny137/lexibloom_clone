@@ -9,7 +9,6 @@ import CTASection from '../components/CTASection';
 
 const HomePage = () => {
   useEffect(() => {
-    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -44,7 +43,6 @@ const HomePage = () => {
       }
     });
 
-    // Reveal on scroll
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -61,7 +59,6 @@ const HomePage = () => {
       observer.observe(card);
     });
 
-    // Parallax hero
     window.addEventListener('scroll', () => {
       const scrolled = window.pageYOffset;
       const hero = document.querySelector('.hero');
@@ -70,7 +67,6 @@ const HomePage = () => {
       }
     });
 
-    // Button hover animations
     document.querySelectorAll('.cta-button').forEach(button => {
       button.addEventListener('mouseenter', function () {
         this.style.transform = 'translateY(-2px) scale(1.05)';
@@ -80,7 +76,6 @@ const HomePage = () => {
       });
     });
 
-    // Accessibility focus outlines
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         navLinks.classList.remove('active');
@@ -114,7 +109,12 @@ const HomePage = () => {
         <h2>Accessibility Features</h2>
         <div className="features-grid">
           <FeatureCard icon="👁️" title="Dyslexia-Friendly Reader" desc="Specially designed reading interface with customizable fonts, spacing, and colors." />
-          <FeatureCard icon="✨" title="Text Simplifier" desc="AI-powered text simplification that breaks down complex sentences." />
+
+          {/* ✅ Updated Text Simplifier Feature with ngrok redirect */}
+          <a href="https://0056f0819579.ngrok-free.app/" target="_blank" rel="noopener noreferrer">
+            <FeatureCard icon="✨" title="Text Simplifier" desc="AI-powered text simplification that breaks down complex sentences." />
+          </a>
+
           <FeatureCard icon="🔊" title="Text-to-Speech" desc="Natural-sounding voice synthesis that reads aloud with adjustable speed." />
           <FeatureCard icon="📷" title="OCR Technology" desc="Advanced OCR extracts text from images and printed material." />
           <FeatureCard icon="👀" title="Eye-Tracking" desc="Monitors focus and suggests simplification based on user engagement." />
@@ -136,7 +136,6 @@ const HomePage = () => {
       </section>
 
       <CTASection />
-
       <Footer />
     </div>
   );
