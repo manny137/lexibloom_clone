@@ -137,4 +137,4 @@ function EyeTracking() {
   );
 }
 
-export default EyeTracking;
+export default TextToSpeech;
