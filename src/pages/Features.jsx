@@ -194,6 +194,23 @@ const FeaturesPage = () => {
           </div>
         </section>
 
+        {/* Text to Speech */}
+        <section className="feature-section" id="text-to-speech">
+          <div className="feature-header">
+            <div className="feature-info">
+              <h2>Text-to-Speech</h2>
+              <p>
+        Let LexiBloom read the text aloud for you! Upload or enter text and
+        listen to it spoken clearly, helping users with reading difficulties or for convenience.
+             </p>
+            </div>
+          <div className="feature-visual">
+            <div className="feature-visual-content">🔊</div>
+            </div>
+          </div>
+       <TextToSpeech />
+       </section>
+
         {/* OCR */}
         <section className="feature-section" id="ocr-technology">
           <div className="feature-header">
