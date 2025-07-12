@@ -759,3 +759,295 @@ footer {
   border: 1px solid #333;
   color: #fff;
 }
+.features-page {
+  padding: 40px 20px;
+  background-color: #0d0f2b; /* Match your dark theme */
+  color: white;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+}
+
+.feature-section {
+  margin-bottom: 80px;
+  padding: 20px;
+  background-color: #1a1d3a;
+  border-radius: 16px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+}
+
+.feature-title {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  color: #7ab4ff;
+}
+
+.feature-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+.dyslexia-tools-section {
+  background-color: #1c1c2e;
+  padding: 2rem;
+  border-radius: 16px;
+  margin-top: 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  font-family: 'Segoe UI', sans-serif;
+  color: #f5f5f5;
+}
+
+.dyslexia-tools-section h3 {
+  font-size: 1.4rem;
+  color: #ffdd57;
+  margin-bottom: 1.5rem;
+}
+
+.dyslexia-tools-section input[type="file"] {
+  display: block;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.dyslexia-tools-section textarea {
+  width: 100%;
+  border: 1px solid #555;
+  background-color: #2a2a3d;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  resize: vertical;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.tool-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.tool-controls label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.95rem;
+  color: #ddd;
+  flex: 1 1 180px;
+}
+
+.tool-controls input[type="range"],
+.tool-controls select {
+  margin-top: 0.5rem;
+  width: 100%;
+  background-color: #2f2f45;
+  border: none;
+  border-radius: 4px;
+  height: 28px;
+  color: #fff;
+}
+
+.formatted-output-section h3 {
+  color: #85e6c5;
+  margin-bottom: 0.8rem;
+}
+
+.formatted-output-section > div {
+  border: 1px solid #444;
+  background-color: #181828;
+  color: #fefefe;
+  border-radius: 12px;
+  padding: 1rem;
+  min-height: 120px;
+}
+/* OCR Container Styles */
+.ocr-container {
+  background-color: #1c1c2e;
+  padding: 2rem;
+  border-radius: 16px;
+  margin-top: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  color: #f5f5f5;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.ocr-container h3 {
+  font-size: 1.4rem;
+  color: #ffd447;
+  margin-bottom: 1rem;
+}
+
+.ocr-container input[type="file"] {
+  display: block;
+  margin: 1rem 0;
+  padding: 0.6rem;
+  border: 1px solid #444;
+  border-radius: 8px;
+  background-color: #2f2f45;
+  color: #eee;
+  cursor: pointer;
+}
+
+.ocr-container img {
+  max-width: 100%;
+  max-height: 250px;
+  border-radius: 8px;
+  margin-top: 1rem;
+  border: 2px solid #444;
+}
+
+.ocr-container .processing {
+  font-style: italic;
+  color: #aaa;
+  margin-top: 0.5rem;
+}
+
+.ocr-container .error {
+  color: #ff6b6b;
+  margin-top: 0.5rem;
+}
+
+.ocr-container .extracted-text {
+  margin-top: 2rem;
+  background-color: #fefefe;
+  color: #111;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 10px;
+  white-space: pre-wrap;
+}
+
+.ocr-container .extracted-text h4 {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.ocr-container button.download-btn {
+  margin-top: 1rem;
+  padding: 10px 16px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.ocr-container button.download-btn:hover {
+  background-color: #45a049;
+}
+
+
+.eye-tracking-box {
+  border: 2px dashed #334155;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  color: white;
+  background-color: #1e293b;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.eye-tracking-btn {
+  padding: 8px 16px;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.eye-tracking-btn.start-btn {
+  background-color: #22c55e; /* Green */
+}
+
+.eye-tracking-btn.stop-btn {
+  background-color: #ef4444; /* Red */
+}
+
+.eye-tracking-btn:hover {
+  opacity: 0.9;
+}
+
+.gaze-output {
+  border: 1px solid #475569;
+  padding: 1rem;
+  margin-top: 1rem;
+  background-color: #0f172a;
+  border-radius: 6px;
+  color: #e2e8f0;
+}
+
+.focus-warning {
+  color: #f87171;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+.eye-tracking-container {
+  border: 2px solid #3b82f6;
+  background-color: #0f172a;
+  padding: 1.5rem;
+  border-radius: 12px;
+  color: #e2e8f0;
+  margin-top: 2rem;
+  box-shadow: 0 0 12px #3b82f660;
+  transition: all 0.3s ease-in-out;
+}
+
+.eye-tracking-container h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.eye-tracking-buttons {
+  margin-top: 1rem;
+}
+
+.start-btn, .stop-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease;
+}
+
+.start-btn {
+  background-color: #22c55e;
+  color: white;
+}
+
+.start-btn:hover {
+  background-color: #16a34a;
+}
+
+.stop-btn {
+  background-color: #ef4444;
+  color: white;
+}
+
+.stop-btn:hover {
+  background-color: #dc2626;
+}
+
+.tracking-info {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: #1e293b;
+  border-radius: 8px;
+  border: 1px solid #475569;
+}
+
+.focus-lost {
+  color: #f87171;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}

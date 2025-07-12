@@ -41,66 +41,29 @@ const OCRContainer = () => {
   };
 
   return (
-    <div
-      style={{
-        padding: "20px",
-        borderRadius: "8px",
-        marginTop: "20px",
-      }}
-    >
+    <div className="ocr-container">
       <h3>📷 Upload an Image to Extract Text</h3>
+
       <input
         type="file"
         accept="image/*"
         onChange={handleImageUpload}
-        style={{
-          margin: "10px 0",
-          padding: "8px",
-          border: "1px solid #ccc",
-          borderRadius: "4px",
-        }}
       />
-      {loading && <p>🕒 Processing image, please wait…</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
+
+      {loading && <p className="processing">🕒 Processing image, please wait…</p>}
+      {error && <p className="error">{error}</p>}
+
       {imageFile && (
         <div>
-          <img
-            src={imageFile}
-            alt="Uploaded preview"
-            style={{
-              maxWidth: "200px",
-              marginTop: "10px",
-              borderRadius: "4px",
-            }}
-          />
+          <img src={imageFile} alt="Uploaded preview" />
         </div>
       )}
+
       {text && (
-        <div
-          style={{
-            marginTop: "20px",
-            padding: "10px",
-            background: "#fff", // 👈 white background ONLY for extracted text box
-            color: "#000",
-            border: "1px solid #ccc",
-            borderRadius: "4px",
-            whiteSpace: "pre-wrap",
-          }}
-        >
+        <div className="extracted-text">
           <h4>📝 Extracted Text:</h4>
           <p>{text}</p>
-          <button
-            onClick={downloadText}
-            style={{
-              marginTop: "10px",
-              padding: "8px 12px",
-              background: "#4CAF50",
-              color: "#fff",
-              border: "none",
-              borderRadius: "4px",
-              cursor: "pointer",
-            }}
-          >
+          <button className="download-btn" onClick={downloadText}>
             ⬇️ Download Extracted Text
           </button>
         </div>
@@ -110,3 +73,4 @@ const OCRContainer = () => {
 };
 
 export default OCRContainer;
+

@@ -1,62 +1,111 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import '../styles/features.css'; // ✅ Correct
+
 
 function EyeTracking() {
+  const [tracking, setTracking] = useState(false);
   const [coords, setCoords] = useState({ x: null, y: null });
   const [focusLost, setFocusLost] = useState(false);
-  let lastSeen = Date.now();
+  const intervalRef = useRef(null);
+  const lastSeenRef = useRef(Date.now());
 
-  useEffect(() => {
-    const runWebGazer = async () => {
+  const startTracking = async () => {
+    try {
       if (window.webgazer) {
         await window.webgazer.setRegression('ridge')
-          .setGazeListener((data, elapsedTime) => {
+          .setGazeListener((data) => {
             if (data) {
               setCoords({ x: Math.round(data.x), y: Math.round(data.y) });
-              lastSeen = Date.now();
+              lastSeenRef.current = Date.now();
               setFocusLost(false);
             }
           });
 
-        // 👇 Start webcam and visual overlays
         await window.webgazer.begin();
         window.webgazer.showVideoPreview(true);
         window.webgazer.showPredictionPoints(true);
         window.webgazer.showFaceOverlay(true);
-      }
-    };
+        setTracking(true);
 
-    runWebGazer();
-
-    // Focus drop check loop
-    const interval = setInterval(() => {
-      if (Date.now() - lastSeen > 4000) {
-        setFocusLost(true);
+        intervalRef.current = setInterval(() => {
+          if (Date.now() - lastSeenRef.current > 4000) {
+            setFocusLost(true);
+          }
+        }, 1000);
       }
-    }, 1000);
+    } catch (err) {
+      console.error('WebGazer start failed:', err);
+    }
+  };
 
-    return () => {
-      if (window.webgazer) {
-        window.webgazer.end();
-      }
-      clearInterval(interval);
-    };
+  const stopTracking = () => {
+  clearInterval(intervalRef.current);
+
+  // Remove overlays safely
+  ['webgazerVideoFeed', 'webgazerFaceOverlay', 'webgazerFaceFeedback'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.remove) {
+      el.remove();
+    }
+  });
+
+  // Stop WebGazer
+  if (window.webgazer) {
+    try {
+      window.webgazer.clearGazeListener();
+      window.webgazer.pause();     // Pause first
+      window.webgazer.end();       // Then end
+    } catch (error) {
+      console.warn("webgazer.end() error:", error.message);
+    }
+  }
+
+  // 🧼 Extra Cleanup for ghost webcam window
+  const leftoverVideo = document.querySelector('video');
+  if (leftoverVideo && leftoverVideo.srcObject) {
+    leftoverVideo.srcObject.getTracks().forEach(track => track.stop());
+    leftoverVideo.remove(); // ⬅️ This removes the black preview
+  }
+
+  setCoords({ x: null, y: null });
+  setFocusLost(false);
+  setTracking(false);
+};
+
+
+  useEffect(() => {
+    return () => stopTracking(); // Cleanup
   }, []);
 
   return (
-    <div style={{ border: "2px dashed #ccc", padding: "1rem", marginTop: "1rem", color: "white" }}>
-      <h3>👁️ Eye Tracking & Focus Detection</h3>
-      <p>Webcam-based attention tracking. Please allow camera access.</p>
-      <div style={{ border: "1px solid #ddd", padding: "1rem", marginTop: "1rem" }}>
-        <p style={{ fontWeight: 'bold' }}>Tracking your gaze here...</p>
-        <p>X: {coords.x || '--'}, Y: {coords.y || '--'}</p>
-        {focusLost && (
-          <p style={{ color: "red", fontWeight: "bold" }}>
-            ⚠️ Focus Lost!
-          </p>
+    <div className="eye-tracking-container">
+      <h3>Eye Tracking & Focus Detection</h3>
+      <p>Click start to begin webcam-based attention tracking.</p>
+
+      <div className="eye-tracking-buttons">
+        {!tracking ? (
+          <button className="start-btn" onClick={startTracking}>
+            ▶️ Start Eye Tracking
+          </button>
+        ) : (
+          <button className="stop-btn" onClick={stopTracking}>
+            ⏹️ Stop Eye Tracking
+          </button>
         )}
       </div>
+
+      {tracking && (
+        <div className="tracking-info">
+          <p><strong>Tracking your gaze:</strong></p>
+          <p>X: {coords.x ?? '--'}, Y: {coords.y ?? '--'}</p>
+          {focusLost && (
+            <p className="focus-lost">⚠️ Focus Lost!</p>
+          )}
+        </div>
+      )}
     </div>
   );
 }
 
 export default EyeTracking;
+

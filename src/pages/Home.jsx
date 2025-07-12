@@ -1,6 +1,5 @@
-// src/pages/Home.jsx
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../styles/home.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -8,6 +7,8 @@ import FeatureCard from '../components/FeatureCard';
 import CTASection from '../components/CTASection'; // Optional CTA component
 
 const Home = () => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     const handleScroll = () => {
       const navbar = document.getElementById('navbar');
@@ -39,6 +40,11 @@ const Home = () => {
     };
   }, []);
 
+  // 🔗 Click handler to navigate to specific section in Features page
+  const goToFeature = (sectionId) => {
+    navigate(`/features#${sectionId}`);
+  };
+
   return (
     <>
       <Navbar />
@@ -49,19 +55,31 @@ const Home = () => {
           <p>
             Empowering digital accessibility with AI-powered tools that make content readable, understandable, and engaging for everyone.
           </p>
-          <Link to="/features" className="cta-button">Explore Features</Link>
+          <button onClick={() => navigate('/features')} className="cta-button">Explore Features</button>
         </div>
       </section>
 
       <section className="features" id="features">
         <h2>Accessibility Features</h2>
         <div className="features-grid">
-          <FeatureCard icon="👁️" title="Dyslexia-Friendly Reader" desc="Specially designed reading interface with customizable fonts, spacing, and colors to reduce reading difficulties and improve comprehension." />
-          <FeatureCard icon="✨" title="Text Simplifier" desc="AI-powered text simplification that breaks down complex sentences into clearer language while maintaining the original meaning." />
-          <FeatureCard icon="🔊" title="Text-to-Speech" desc="Natural-sounding voice synthesis that reads content aloud with adjustable speed and tone." />
-          <FeatureCard icon="📷" title="OCR Technology" desc="Advanced OCR extracts text from images and documents, making printed content accessible." />
-          <FeatureCard icon="👀" title="Eye-Tracking" desc="Monitors reading patterns and provides personalized suggestions to improve comprehension." />
-          <FeatureCard icon="🎯" title="Smart Adaptation" desc="AI adapts the content layout based on user behavior for personalized accessibility." />
+          <div onClick={() => goToFeature('dyslexia-reader')}>
+            <FeatureCard icon="👁️" title="Dyslexia-Friendly Reader" desc="Specially designed reading interface with customizable fonts, spacing, and colors to reduce reading difficulties and improve comprehension." />
+          </div>
+          <div onClick={() => goToFeature('text-simplifier')}>
+            <FeatureCard icon="✨" title="Text Simplifier" desc="AI-powered text simplification that breaks down complex sentences into clearer language while maintaining the original meaning." />
+          </div>
+          <div onClick={() => goToFeature('text-to-speech')}>
+            <FeatureCard icon="🔊" title="Text-to-Speech" desc="Natural-sounding voice synthesis that reads content aloud with adjustable speed and tone." />
+          </div>
+          <div onClick={() => goToFeature('ocr-technology')}>
+            <FeatureCard icon="📷" title="OCR Technology" desc="Advanced OCR extracts text from images and documents, making printed content accessible." />
+          </div>
+          <div onClick={() => goToFeature('eye-tracking')}>
+            <FeatureCard icon="👀" title="Eye-Tracking" desc="Monitors reading patterns and provides personalized suggestions to improve comprehension." />
+          </div>
+          <div onClick={() => goToFeature('smart-adaptation')}>
+            <FeatureCard icon="🎯" title="Smart Adaptation" desc="AI adapts the content layout based on user behavior for personalized accessibility." />
+          </div>
         </div>
       </section>
 
@@ -80,7 +98,6 @@ const Home = () => {
       </section>
 
       <CTASection /> {/* You can customize or remove if not using this */}
-
       <Footer />
     </>
   );
