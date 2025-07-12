@@ -686,3 +686,12 @@ footer {
   line-height: 1.8;
 }
 @import url('https://fonts.googleapis.com/css2?family=OpenDyslexic&display=swap');
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  height: 36px;
+  margin-right: 8px;
+}
