@@ -40,7 +40,6 @@ const Home = () => {
     };
   }, []);
 
-  // 🔗 Click handler to navigate to specific section in Features page
   const goToFeature = (sectionId) => {
     navigate(`/features#${sectionId}`);
   };
@@ -65,9 +64,12 @@ const Home = () => {
           <div onClick={() => goToFeature('dyslexia-reader')}>
             <FeatureCard icon="👁️" title="Dyslexia-Friendly Reader" desc="Specially designed reading interface with customizable fonts, spacing, and colors to reduce reading difficulties and improve comprehension." />
           </div>
-          <div onClick={() => goToFeature('text-simplifier')}>
+          
+          {/* UPDATED: Text Simplifier links to ngrok external app */}
+          <div onClick={() => window.open('https://0056f0819579.ngrok-free.app/', '_blank')}>
             <FeatureCard icon="✨" title="Text Simplifier" desc="AI-powered text simplification that breaks down complex sentences into clearer language while maintaining the original meaning." />
           </div>
+
           <div onClick={() => goToFeature('text-to-speech')}>
             <FeatureCard icon="🔊" title="Text-to-Speech" desc="Natural-sounding voice synthesis that reads content aloud with adjustable speed and tone." />
           </div>
@@ -97,11 +99,10 @@ const Home = () => {
         </div>
       </section>
 
-      <CTASection /> {/* You can customize or remove if not using this */}
+      <CTASection />
       <Footer />
     </>
   );
 };
 
 export default Home;
-

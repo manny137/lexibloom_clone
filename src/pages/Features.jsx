@@ -6,6 +6,7 @@ import CTASection from '../components/CTASection';
 import '../styles/features.css';
 import OCRContainer from '../components/OCRContainer';
 import EyeTracking from '../components/EyeTracking';
+import TextToSpeech from '../components/TextToSpeech';
 
 const FeaturesPage = () => {
   const [inputText, setInputText] = useState('');
@@ -15,7 +16,6 @@ const FeaturesPage = () => {
   const [wordSpacing, setWordSpacing] = useState(2);
   const [fontFamily, setFontFamily] = useState('Default');
   const [theme, setTheme] = useState('dark');
-  const [eyeTrackingActive, setEyeTrackingActive] = useState(false);
 
   const location = useLocation();
 
@@ -78,7 +78,16 @@ const FeaturesPage = () => {
         <div className="features-nav-container">
           <ul className="features-nav-list">
             <li><a href="#dyslexia-reader">Dyslexia Reader</a></li>
-            <li><a href="#text-simplifier">Text Simplifier</a></li>
+            <li>
+              {/* ✅ Updated to open ngrok-hosted Flask app in new tab */}
+              <a
+                href="https://0056f0819579.ngrok-free.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Text Simplifier
+              </a>
+            </li>
             <li><a href="#text-to-speech">Text-to-Speech</a></li>
             <li><a href="#ocr-technology">OCR Technology</a></li>
             <li><a href="#eye-tracking">Eye Tracking</a></li>
@@ -201,7 +210,7 @@ const FeaturesPage = () => {
           <OCRContainer />
         </section>
 
-        {/* Eye Tracking */}
+        {/* Eye Tracking Section */}
         <section className="feature-section" id="eye-tracking">
           <div className="feature-header">
             <div className="feature-info">
