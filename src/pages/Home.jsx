@@ -66,7 +66,7 @@ const Home = () => {
           </div>
           
           {/* UPDATED: Text Simplifier links to ngrok external app */}
-          <div onClick={() => window.open('https://0056f0819579.ngrok-free.app/', '_blank')}>
+          <div onClick={() => window.open('https://d79e5b803146.ngrok-free.app/', '_blank')}>
             <FeatureCard icon="✨" title="Text Simplifier" desc="AI-powered text simplification that breaks down complex sentences into clearer language while maintaining the original meaning." />
           </div>
 

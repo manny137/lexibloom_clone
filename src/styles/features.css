@@ -1209,3 +1209,92 @@ div[id^="webgazerPredictionPoint"] {
   font-style: italic;
   color: #cbd5e1;
 }
+css 
+
+/* Text to Speech Styling */
+.tts-container {
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background-color: #1e293b; /* Dark navy background */
+  color: #f8fafc; /* Light text */
+  max-width: 700px;
+  box-shadow: 0 0 15px rgba(100, 149, 237, 0.2);
+  border: 1px solid #334155;
+}
+
+.tts-container h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.tts-container textarea {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #0f172a;
+  color: #f1f5f9;
+  border: 1px solid #475569;
+  border-radius: 6px;
+  resize: vertical;
+}
+
+.tts-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.tts-controls label {
+  flex: 1 1 200px;
+  color: #cbd5e1;
+  font-size: 0.9rem;
+}
+
+.tts-controls select,
+.tts-controls input[type="range"] {
+  width: 100%;
+  margin-top: 0.3rem;
+  background-color: #0f172a;
+  color: #f8fafc;
+  border: 1px solid #475569;
+  border-radius: 4px;
+}
+
+.tts-buttons {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.tts-buttons button {
+  padding: 0.5rem 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.tts-buttons button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.tts-buttons .play-btn {
+  background-color: #22c55e;
+  color: white;
+}
+
+.tts-buttons .stop-btn {
+  background-color: #ef4444;
+  color: white;
+}
+
+.tts-status {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #cbd5e1;
+}

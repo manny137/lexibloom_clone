@@ -81,7 +81,7 @@ const FeaturesPage = () => {
             <li>
               {/* ✅ Updated to open ngrok-hosted Flask app in new tab */}
               <a
-                href="https://0056f0819579.ngrok-free.app/"
+                href='https://d79e5b803146.ngrok-free.app/'
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -195,7 +195,7 @@ const FeaturesPage = () => {
         </section>
 
         {/* Text to Speech */}
-        <section className="feature-section" id="text-to-speech">
+         <section className="feature-section" id="text-to-speech">
           <div className="feature-header">
             <div className="feature-info">
               <h2>Text-to-Speech</h2>
@@ -210,7 +210,6 @@ const FeaturesPage = () => {
           </div>
        <TextToSpeech />
        </section>
-
         {/* OCR */}
         <section className="feature-section" id="ocr-technology">
           <div className="feature-header">

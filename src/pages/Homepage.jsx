@@ -111,7 +111,7 @@ const HomePage = () => {
           <FeatureCard icon="👁️" title="Dyslexia-Friendly Reader" desc="Specially designed reading interface with customizable fonts, spacing, and colors." />
 
           {/* ✅ Updated Text Simplifier Feature with ngrok redirect */}
-          <a href="https://0056f0819579.ngrok-free.app/" target="_blank" rel="noopener noreferrer">
+          <a href="https://d79e5b803146.ngrok-free.app/" target="_blank" rel="noopener noreferrer">
             <FeatureCard icon="✨" title="Text Simplifier" desc="AI-powered text simplification that breaks down complex sentences." />
           </a>
 

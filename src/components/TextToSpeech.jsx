@@ -1,140 +1,164 @@
-import React, { useState, useEffect, useRef } from 'react';
-import '../styles/features.css'; 
 
-function EyeTracking() {
-  const [tracking, setTracking] = useState(false);
-  const [coords, setCoords] = useState({ x: null, y: null });
-  const [focusLost, setFocusLost] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
-  const intervalRef = useRef(null);
-  const lastSeenRef = useRef(Date.now());
 
-  const screenBounds = {
-    xMin: window.innerWidth * 0.1,
-    xMax: window.innerWidth * 0.9,
-    yMin: window.innerHeight * 0.1,
-    yMax: window.innerHeight * 0.9,
-  };
 
-  const startTracking = async () => {
-    try {
-      if (window.webgazer) {
-        await window.webgazer.setRegression('ridge')
-          .setGazeListener((data) => {
-            if (data) {
-              const x = Math.round(data.x);
-              const y = Math.round(data.y);
-              setCoords({ x, y });
+import React, { useState, useEffect, useRef } from "react";
+import "../styles/features.css"; // Ensure this path is correct
 
-              const insideScreen =
-                x > screenBounds.xMin &&
-                x < screenBounds.xMax &&
-                y > screenBounds.yMin &&
-                y < screenBounds.yMax;
+const TextToSpeech = () => {
+  const [text, setText] = useState("");
+  const [voices, setVoices] = useState([]);
+  const [selectedVoice, setSelectedVoice] = useState("");
+  const [rate, setRate] = useState(1);
+  const [pitch, setPitch] = useState(1);
+  const [speaking, setSpeaking] = useState(false);
+  const [fileText, setFileText] = useState("");
 
-              if (insideScreen) {
-                lastSeenRef.current = Date.now();
-                setFocusLost(false);
-              }
-            }
-          });
-
-        await window.webgazer.begin();
-        window.webgazer.showVideoPreview(true);
-        window.webgazer.showPredictionPoints(true);
-        window.webgazer.showFaceOverlay(true);
-        setTracking(true);
-
-        intervalRef.current = setInterval(async () => {
-          const prediction = await window.webgazer.getCurrentPrediction();
-        
-          const gazeLost = !prediction; // means no eyes/face detected
-          const tooLong = Date.now() - lastSeenRef.current > 4000;
-        
-          if (gazeLost || tooLong) {
-            setFocusLost(true);
-            setShowPopup(true);
-          }
-        }, 1000);
-      }
-    } catch (err) {
-      console.error('WebGazer start failed:', err);
-    }
-  };
-
-  const handleClosePopup = () => {
-    setShowPopup(false);
-    setFocusLost(false);
-    lastSeenRef.current = Date.now();
-  };
-
-  const stopTracking = () => {
-    clearInterval(intervalRef.current);
-
-    ['webgazerVideoFeed', 'webgazerFaceOverlay', 'webgazerFaceFeedback'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el && el.remove) el.remove();
-    });
-
-    if (window.webgazer) {
-      try {
-        window.webgazer.clearGazeListener();
-        window.webgazer.pause();
-        window.webgazer.end();
-      } catch (error) {
-        console.warn("webgazer.end() error:", error.message);
-      }
-    }
-
-    const leftoverVideo = document.querySelector('video');
-    if (leftoverVideo && leftoverVideo.srcObject) {
-      leftoverVideo.srcObject.getTracks().forEach(track => track.stop());
-      leftoverVideo.remove();
-    }
-
-    setCoords({ x: null, y: null });
-    setFocusLost(false);
-    setTracking(false);
-  };
+  const utteranceRef = useRef(null);
 
   useEffect(() => {
-    return () => stopTracking();
+    const loadVoices = () => {
+      const allVoices = window.speechSynthesis.getVoices();
+      setVoices(allVoices);
+      if (allVoices.length > 0) setSelectedVoice(allVoices[0].name);
+    };
+
+    loadVoices();
+    window.speechSynthesis.onvoiceschanged = loadVoices;
   }, []);
 
-  return (
-    <div className="eye-tracking-container">
-      <h3>Eye Tracking & Focus Detection</h3>
-      <p>Click start to begin webcam-based attention tracking.</p>
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
 
-      <div className="eye-tracking-buttons">
-        {!tracking ? (
-          <button className="start-btn" onClick={startTracking}>▶️ Start Eye Tracking</button>
-        ) : (
-          <button className="stop-btn" onClick={stopTracking}>⏹️ Stop Eye Tracking</button>
-        )}
+    const reader = new FileReader();
+
+    if (file.type !== "text/plain") {
+      alert("Only .txt files are supported for now.");
+      return;
+    }
+
+    reader.onload = (event) => {
+      setFileText(event.target.result);
+      setText(""); // clear text area
+    };
+
+    reader.readAsText(file);
+  };
+
+  const speak = () => {
+    const toSpeak = fileText.trim() || text.trim();
+    if (!toSpeak) return;
+
+    const utterance = new SpeechSynthesisUtterance(toSpeak);
+    utterance.voice = voices.find((v) => v.name === selectedVoice);
+    utterance.rate = rate;
+    utterance.pitch = pitch;
+
+    utterance.onend = () => setSpeaking(false);
+    utterance.onerror = () => setSpeaking(false);
+
+    utteranceRef.current = utterance;
+    window.speechSynthesis.speak(utterance);
+    setSpeaking(true);
+  };
+
+  const stop = () => {
+    window.speechSynthesis.cancel();
+    setSpeaking(false);
+  };
+
+  return (
+    <div className="tts-container">
+      <h3>🎤 Enter Text or Upload File to Read Aloud</h3>
+
+      <textarea
+        rows="5"
+        placeholder="Type or paste text here…"
+        value={text}
+        onChange={(e) => {
+          setText(e.target.value);
+          setFileText(""); // clear file text
+        }}
+        aria-label="Text to speak"
+      />
+
+      <div>
+        <strong>Or upload a text file: </strong>
+        <input
+          type="file"
+          accept=".txt"
+          onChange={handleFileChange}
+          aria-label="Upload text file"
+        />
       </div>
 
-      {tracking && (
-        <div className="tracking-info">
-          <p><strong>Tracking your gaze:</strong></p>
-          <p>X: {coords.x ?? '--'}, Y: {coords.y ?? '--'}</p>
-          {focusLost && <p className="focus-lost">⚠️ Focus Lost!</p>}
-        </div>
-      )}
+      <div className="tts-controls">
+        <label>
+          <strong>Voice:</strong>
+          <select
+            value={selectedVoice}
+            onChange={(e) => setSelectedVoice(e.target.value)}
+            aria-label="Select voice"
+          >
+            {voices.map((voice, idx) => (
+              <option key={idx} value={voice.name}>
+                {voice.name} ({voice.lang})
+              </option>
+            ))}
+          </select>
+        </label>
 
-      {showPopup && (
-        <div className="focus-popup">
-          <div className="popup-content">
-            <h2>👁️ Hey! We noticed you lost focus…</h2>
-            <p>
-              Want help with this section? You can simplify it, listen to it, or just take a moment and come back when you're ready.
-            </p>
-            <button onClick={handleClosePopup}>✅ I’m back</button>
-          </div>
-        </div>
-      )}
+        <label>
+          <strong>Rate:</strong>
+          <input
+            type="range"
+            min="0.5"
+            max="2"
+            step="0.1"
+            value={rate}
+            onChange={(e) => setRate(e.target.value)}
+            aria-label="Speech rate"
+          />
+        </label>
+
+        <label>
+          <strong>Pitch:</strong>
+          <input
+            type="range"
+            min="0"
+            max="2"
+            step="0.1"
+            value={pitch}
+            onChange={(e) => setPitch(e.target.value)}
+            aria-label="Speech pitch"
+          />
+        </label>
+      </div>
+
+      <div className="tts-buttons">
+        <button
+          onClick={speak}
+          disabled={speaking}
+          className="play-btn"
+          aria-label="Play speech"
+        >
+          ▶️ Play
+        </button>
+        <button
+          onClick={stop}
+          disabled={!speaking}
+          className="stop-btn"
+          aria-label="Stop speech"
+        >
+          ⏹ Stop
+        </button>
+      </div>
+
+      <p className="tts-status">
+        {speaking ? "Speaking…" : "Ready."}
+      </p>
     </div>
   );
-}
+};
 
-export default EyeTracking;
+export default TextToSpeech;
