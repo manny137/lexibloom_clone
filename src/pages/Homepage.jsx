@@ -6,6 +6,8 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import FeatureCard from '../components/FeatureCard';
 import CTASection from '../components/CTASection';
+import LexiBloomTitle from '../components/LexiBloomTitle';
+
 
 const HomePage = () => {
   useEffect(() => {
@@ -99,7 +101,8 @@ const HomePage = () => {
 
       <section className="hero" id="home">
         <div className="hero-content">
-          <h1>Lexibloom</h1>
+          {/* <h1>Lexibloom</h1> */}
+          <LexiBloomTitle />
           <p>Empowering digital accessibility with AI-powered tools that make content readable, understandable, and engaging for everyone.</p>
           <Link to="/features" className="cta-button">Explore Features</Link>
         </div>
