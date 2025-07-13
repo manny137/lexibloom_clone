@@ -1213,15 +1213,14 @@ css
 
 /* Text to Speech Styling */
 .tts-container {
-  margin: 2rem auto;
-  padding: 1.5rem;
-  border-radius: 12px;
-  background-color: #1e293b; /* Dark navy background */
-  color: #f8fafc; /* Light text */
-  max-width: 700px;
-  box-shadow: 0 0 15px rgba(100, 149, 237, 0.2);
-  border: 1px solid #334155;
+  width: 100%;
+  padding: 1rem;
+  margin: 0;
+  box-sizing: border-box;
+  display: block;
 }
+
+
 
 .tts-container h3 {
   font-size: 1.4rem;

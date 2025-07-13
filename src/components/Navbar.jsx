@@ -1,18 +1,24 @@
 import React, { useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import logoIcon from '../assets/logo.png.jpeg'; // ✅ Make sure the filename & path are correct
-import '../styles/home.css'; // your global CSS file
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import logoIcon from '../assets/logo.png.jpeg'; // ✅ Confirm this path
+import '../styles/home.css'; // ✅ Make sure CSS exists and has styles for navbar
 
 const Navbar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
-  // Scroll to section when hash link is clicked
+  // Scroll to section when on /home and clicking hash link
   const scrollToSection = (id) => {
-    if (location.pathname === '/home') {
+    if (location.pathname !== '/home') {
+      // Navigate to /home and scroll after short delay
+      navigate('/home');
+      setTimeout(() => {
+        const section = document.getElementById(id);
+        if (section) section.scrollIntoView({ behavior: 'smooth' });
+      }, 100); // Wait for DOM to load
+    } else {
       const section = document.getElementById(id);
-      if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
-      }
+      if (section) section.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -25,8 +31,10 @@ const Navbar = () => {
       navLinks.classList.toggle('active');
     };
 
-    toggle.addEventListener('click', handleToggle);
-    return () => toggle.removeEventListener('click', handleToggle);
+    if (toggle) toggle.addEventListener('click', handleToggle);
+    return () => {
+      if (toggle) toggle.removeEventListener('click', handleToggle);
+    };
   }, []);
 
   return (
@@ -40,23 +48,10 @@ const Navbar = () => {
         <ul className="nav-links" id="navLinks">
           <li><Link to="/home">Home</Link></li>
           <li><Link to="/features">Features</Link></li>
-          <li>
-            <Link
-              to="/home#about"
-              onClick={() => scrollToSection('about')}
-            >
-              About
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/home#contact"
-              onClick={() => scrollToSection('contact')}
-            >
-              Contact
-            </Link>
-          </li>
+          <li><button className="link-btn" onClick={() => scrollToSection('about')}>About</button></li>
+          <li><button className="link-btn" onClick={() => scrollToSection('contact')}>Contact</button></li>
         </ul>
+
         <button className="menu-toggle" id="menuToggle">☰</button>
       </div>
     </nav>
@@ -64,3 +59,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

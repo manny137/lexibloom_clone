@@ -109,7 +109,7 @@ const FeaturesPage = () => {
               </p>
             </div>
             <div className="feature-visual">
-              <div className="feature-visual-content">👁️</div>
+              <div className="feature-visual-content">📚</div>
             </div>
           </div>
 
