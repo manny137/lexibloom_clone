@@ -1,41 +1,83 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import logoIcon from '../assets/logo.png.jpeg'; // ✅ Confirm this path
-import '../styles/home.css'; // ✅ Make sure CSS exists and has styles for navbar
+import logoIcon from '../assets/logo.png.jpeg';
+import '../styles/home.css';
 
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Scroll to section when on /home and clicking hash link
+  const [theme, setTheme] = useState(() =>
+    localStorage.getItem('theme') || 'dark'
+  );
+
+  const [mode, setMode] = useState(() => {
+    const path = location.pathname;
+    if (path.includes('adhd')) return 'adhd';
+    if (path.includes('low-vision')) return 'low-vision';
+    if (path.includes('features')) return 'dyslexia';
+    return null; // 🏠 homepage
+  });
+
+  useEffect(() => {
+    // Set theme class on <body>
+    document.body.classList.remove('light', 'dark');
+    document.body.classList.add(theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  useEffect(() => {
+    const path = location.pathname;
+    if (path.includes('adhd')) {
+      setMode('adhd');
+      localStorage.setItem('mode', 'adhd');
+    } else if (path.includes('low-vision')) {
+      setMode('low-vision');
+      localStorage.setItem('mode', 'low-vision');
+    } else if (path.includes('features')) {
+      setMode('dyslexia');
+      localStorage.setItem('mode', 'dyslexia');
+    } else {
+      setMode(null); // No mode indicator on homepage
+      localStorage.removeItem('mode');
+    }
+  }, [location.pathname]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
+  };
+
   const scrollToSection = (id) => {
     if (location.pathname !== '/home') {
-      // Navigate to /home and scroll after short delay
       navigate('/home');
       setTimeout(() => {
         const section = document.getElementById(id);
         if (section) section.scrollIntoView({ behavior: 'smooth' });
-      }, 100); // Wait for DOM to load
+      }, 100);
     } else {
       const section = document.getElementById(id);
       if (section) section.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
-  // Toggle mobile menu
-  useEffect(() => {
-    const toggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
+  const getFeaturesPath = () => {
+    if (mode === 'adhd') return '/adhd-features';
+    if (mode === 'low-vision') return '/low-vision-features';
+    return '/features';
+  };
 
-    const handleToggle = () => {
-      navLinks.classList.toggle('active');
-    };
-
-    if (toggle) toggle.addEventListener('click', handleToggle);
-    return () => {
-      if (toggle) toggle.removeEventListener('click', handleToggle);
-    };
-  }, []);
+  const renderModeIndicator = () => {
+    switch (mode) {
+      case 'adhd':
+        return '🧠 ADHD Mode';
+      case 'low-vision':
+        return '👓 Low Vision Mode';
+      case 'dyslexia':
+        return '📘 Dyslexia Mode';
+      default:
+        return '';
+    }
+  };
 
   return (
     <nav id="navbar">
@@ -47,9 +89,18 @@ const Navbar = () => {
 
         <ul className="nav-links" id="navLinks">
           <li><Link to="/home">Home</Link></li>
-          <li><Link to="/features">Features</Link></li>
+
+          <li><button className="link-btn" onClick={() => scrollToSection('mode-selector')}>Modes</button></li>
           <li><button className="link-btn" onClick={() => scrollToSection('about')}>About</button></li>
           <li><button className="link-btn" onClick={() => scrollToSection('contact')}>Contact</button></li>
+          <li>
+            <button className="theme-toggle-btn" onClick={toggleTheme}>
+              {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
+            </button>
+          </li>
+          {mode && (
+            <li className="mode-indicator">{renderModeIndicator()}</li>
+          )}
         </ul>
 
         <button className="menu-toggle" id="menuToggle">☰</button>
@@ -59,4 +110,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

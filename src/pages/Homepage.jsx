@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/style.css';
 
@@ -8,12 +8,31 @@ import FeatureCard from '../components/FeatureCard';
 import CTASection from '../components/CTASection';
 import LexiBloomTitle from '../components/LexiBloomTitle';
 import logo from '../assets/logo.png.jpeg';
+const cardStyle = (borderColor) => ({
+  flex: '1 1 300px',
+  padding: '2rem',
+  borderRadius: '16px',
+  backgroundColor: '#1f2937',
+  color: '#fff',
+  textAlign: 'center',
+  boxShadow: '0 6px 24px rgba(0, 0, 0, 0.25)',
+  borderLeft: `6px solid ${borderColor}`,
+  transition: 'transform 0.3s',
+});
+
+const cardHeadingStyle = {
+  fontSize: '1.6rem',
+  marginBottom: '0.8rem',
+  fontWeight: '600',
+};
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const [theme, setTheme] = useState('dark');
 
   useEffect(() => {
-    // Smooth scrolling for hash links
+    document.body.classList.add('dark');
+
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -24,7 +43,6 @@ const HomePage = () => {
       });
     });
 
-    // Mobile menu toggle
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
     if (menuToggle && navLinks) {
@@ -38,7 +56,6 @@ const HomePage = () => {
       });
     }
 
-    // Navbar scroll effect
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 50) {
@@ -48,7 +65,6 @@ const HomePage = () => {
       }
     });
 
-    // Intersection observer animation for feature cards
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -65,7 +81,6 @@ const HomePage = () => {
       observer.observe(card);
     });
 
-    // Hero parallax scroll
     window.addEventListener('scroll', () => {
       const scrolled = window.pageYOffset;
       const hero = document.querySelector('.hero');
@@ -74,7 +89,6 @@ const HomePage = () => {
       }
     });
 
-    // CTA button hover
     document.querySelectorAll('.cta-button').forEach(button => {
       button.addEventListener('mouseenter', function () {
         this.style.transform = 'translateY(-2px) scale(1.05)';
@@ -84,14 +98,12 @@ const HomePage = () => {
       });
     });
 
-    // Escape key closes nav menu
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         navLinks.classList.remove('active');
       }
     });
 
-    // Accessibility outlines on focus
     document.querySelectorAll('a, button').forEach(element => {
       element.addEventListener('focus', function () {
         this.style.outline = '2px solid #60a5fa';
@@ -104,16 +116,57 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div>
+    <div className={theme}>
       <Navbar />
 
-      <section className="hero" id="home">
-        <div className="hero-content">
-          <LexiBloomTitle />
-          <p>Empowering digital accessibility with AI-powered tools that make content readable, understandable, and engaging for everyone.</p>
-          <Link to="/features" className="cta-button">Explore Features</Link>
-        </div>
-      </section>
+<section className="hero" id="home">
+  <div className="hero-content">
+    <LexiBloomTitle />
+    <p>
+      Empowering digital accessibility with AI-powered tools that make content readable,
+      understandable, and engaging for everyone.
+    </p>
+    
+  </div>
+</section>
+
+
+<section className="mode-selector" id="mode-selector" style={{ marginTop: '5rem', textAlign: 'center' }}>
+  <h2 style={{
+    fontSize: '2.5rem',
+    fontWeight: '700',
+    marginBottom: '1rem',
+    color: '#ffffff'
+  }}>
+    Choose Your Accessibility Mode
+  </h2>
+  <p style={{ fontSize: '1.2rem', marginBottom: '2.5rem', color: '#d1d5db' }}>
+    Select the mode that best fits your needs to explore personalized tools and features.
+  </p>
+
+  <div className="mode-grid" style={{
+    display: 'flex',
+    gap: '2rem',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    padding: '0 1rem'
+  }}>
+    <Link to="/features" className="mode-card dyslexia" style={cardStyle('#3b82f6')}>
+      <h3 style={cardHeadingStyle}> Dyslexia Mode</h3>
+      <p>Customized fonts, spacing, and text-to-speech for easier reading.</p>
+    </Link>
+
+    <Link to="/adhd-features" className="mode-card adhd" style={cardStyle('#facc15')}>
+      <h3 style={cardHeadingStyle}> ADHD Mode</h3>
+      <p>Focus tools, distraction minimizers, and guided reading support.</p>
+    </Link>
+
+    <Link to="/low-vision-features" className="mode-card low-vision" style={cardStyle('#10b981')}>
+      <h3 style={cardHeadingStyle}> Low Vision Mode</h3>
+      <p>High contrast themes, zoom, and screen reader optimizations.</p>
+    </Link>
+  </div>
+</section>
 
       <section className="features" id="features">
         <h2>Accessibility Features</h2>
@@ -121,23 +174,18 @@ const HomePage = () => {
           <Link to="/features#dyslexia-friendly-reader">
             <FeatureCard icon="👁️" title="Dyslexia-Friendly Reader" desc="Specially designed reading interface with customizable fonts, spacing, and colors." />
           </Link>
-
-          <a href="https://d79e5b803146.ngrok-free.app/" target="_blank" rel="noopener noreferrer">
+          <a href='https://6d6ae154a718.ngrok-free.app/' target="_blank" rel="noopener noreferrer">
             <FeatureCard icon="✨" title="Text Simplifier" desc="AI-powered text simplification that breaks down complex sentences." />
           </a>
-
           <Link to="/features#text-to-speech">
             <FeatureCard icon="🔊" title="Text-to-Speech" desc="Natural-sounding voice synthesis that reads aloud with adjustable speed." />
           </Link>
-
           <Link to="/features#ocr-technology">
             <FeatureCard icon="📷" title="OCR Technology" desc="Advanced OCR extracts text from images and printed material." />
           </Link>
-
           <Link to="/features#eye-tracking">
             <FeatureCard icon="👀" title="Eye-Tracking" desc="Monitors focus and suggests simplification based on user engagement." />
           </Link>
-
           <Link to="/features#smart-adaptation">
             <FeatureCard icon="🎯" title="Smart Adaptation" desc="Content adapts layout based on your reading patterns and needs." />
           </Link>

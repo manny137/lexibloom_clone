@@ -53,8 +53,6 @@ const FeaturesPage = () => {
         : fontFamily === 'OpenDyslexic'
         ? 'OpenDyslexic, sans-serif'
         : `${fontFamily}, sans-serif`,
-    backgroundColor: theme === 'dark' ? '#111' : '#fff',
-    color: theme === 'dark' ? '#fff' : '#000',
     padding: '1rem',
     borderRadius: '8px',
     marginTop: '1rem',
@@ -79,9 +77,8 @@ const FeaturesPage = () => {
           <ul className="features-nav-list">
             <li><a href="#dyslexia-reader">Dyslexia Reader</a></li>
             <li>
-              {/* ✅ Updated to open ngrok-hosted Flask app in new tab */}
               <a
-                href='https://d79e5b803146.ngrok-free.app/'
+                href='https://6d6ae154a718.ngrok-free.app/'
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -97,7 +94,6 @@ const FeaturesPage = () => {
       </section>
 
       <div className="features-container">
-        {/* Dyslexia Reader */}
         <section className="feature-section" id="dyslexia-reader">
           <div className="feature-header">
             <div className="feature-info">
@@ -115,12 +111,14 @@ const FeaturesPage = () => {
 
           <div className="dyslexia-tools-section">
             <h3 className="section-heading">📄 Upload File or Paste Text</h3>
+
             <input
               type="file"
               accept=".txt"
               onChange={handleFileUpload}
               style={{ marginBottom: '10px' }}
             />
+
             <textarea
               rows="5"
               placeholder="Or paste your text here..."
@@ -138,6 +136,7 @@ const FeaturesPage = () => {
                   <option value="Comic Sans MS">Comic Sans MS</option>
                 </select>
               </label>
+
               <label><strong>Font Size:</strong>
                 <input
                   type="range"
@@ -147,6 +146,7 @@ const FeaturesPage = () => {
                   onChange={(e) => setFontSize(e.target.value)}
                 />
               </label>
+
               <label><strong>Line Height:</strong>
                 <input
                   type="range"
@@ -157,6 +157,7 @@ const FeaturesPage = () => {
                   onChange={(e) => setLineHeight(e.target.value)}
                 />
               </label>
+
               <label><strong>Letter Spacing:</strong>
                 <input
                   type="range"
@@ -167,6 +168,7 @@ const FeaturesPage = () => {
                   onChange={(e) => setLetterSpacing(e.target.value)}
                 />
               </label>
+
               <label><strong>Word Spacing:</strong>
                 <input
                   type="range"
@@ -176,12 +178,6 @@ const FeaturesPage = () => {
                   value={wordSpacing}
                   onChange={(e) => setWordSpacing(e.target.value)}
                 />
-              </label>
-              <label><strong>Theme:</strong>
-                <select value={theme} onChange={(e) => setTheme(e.target.value)}>
-                  <option value="dark">Dark</option>
-                  <option value="light">Light</option>
-                </select>
               </label>
             </div>
 
@@ -194,24 +190,22 @@ const FeaturesPage = () => {
           </div>
         </section>
 
-        {/* Text to Speech */}
         <section className="feature-section" id="text-to-speech">
           <div className="feature-header">
             <div className="feature-info">
               <h2>Text-to-Speech</h2>
               <p>
-        Let LexiBloom read the text aloud for you! Upload or enter text and
-        listen to it spoken clearly, helping users with reading difficulties or for convenience.
-             </p>
+                Let LexiBloom read the text aloud for you! Upload or enter text and
+                listen to it spoken clearly, helping users with reading difficulties or for convenience.
+              </p>
             </div>
-          <div className="feature-visual">
-            <div className="feature-visual-content">🔊</div>
+            <div className="feature-visual">
+              <div className="feature-visual-content">🔊</div>
             </div>
           </div>
-       <TextToSpeech />
-       </section>
+          <TextToSpeech />
+        </section>
 
-        {/* OCR */}
         <section className="feature-section" id="ocr-technology">
           <div className="feature-header">
             <div className="feature-info">
@@ -227,7 +221,6 @@ const FeaturesPage = () => {
           <OCRContainer />
         </section>
 
-        {/* Eye Tracking Section */}
         <section className="feature-section" id="eye-tracking">
           <div className="feature-header">
             <div className="feature-info">
@@ -236,10 +229,12 @@ const FeaturesPage = () => {
                 LexiBloom uses camera-based eye-tracking to monitor your gaze and attention while reading.
               </p>
             </div>
+          
             <div className="feature-visual">
               <div className="feature-visual-content">👁️</div>
             </div>
           </div>
+          
           <EyeTracking />
         </section>
       </div>
