@@ -1,0 +1,7 @@
+flask
+opencv-python
+cvzone
+pynput
+pyperclip
+pillow
+flask-cors

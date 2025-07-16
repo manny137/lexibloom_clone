@@ -38,7 +38,7 @@ const Navbar = () => {
       setMode('dyslexia');
       localStorage.setItem('mode', 'dyslexia');
     } else {
-      setMode(null); // No mode indicator on homepage
+      setMode(null);
       localStorage.removeItem('mode');
     }
   }, [location.pathname]);
@@ -66,6 +66,40 @@ const Navbar = () => {
     return '/features';
   };
 
+  const handleStartKeyboard = async () => {
+    try {
+      const response = await fetch("http://127.0.0.1:5000/start-keyboard");
+      const data = await response.json();
+      if (data.status === "success") {
+        alert(data.message);
+      } else {
+        alert("Failed to start keyboard");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Error connecting to backend");
+    }
+  };
+
+  useEffect(() => {
+    const toggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    if (toggle && navLinks) {
+      toggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+      });
+    }
+
+    return () => {
+      if (toggle && navLinks) {
+        toggle.removeEventListener('click', () => {
+          navLinks.classList.toggle('active');
+        });
+      }
+    };
+  }, []);
+
   const renderModeIndicator = () => {
     switch (mode) {
       case 'adhd':
@@ -89,7 +123,6 @@ const Navbar = () => {
 
         <ul className="nav-links" id="navLinks">
           <li><Link to="/home">Home</Link></li>
-
           <li><button className="link-btn" onClick={() => scrollToSection('mode-selector')}>Modes</button></li>
           <li><button className="link-btn" onClick={() => scrollToSection('about')}>About</button></li>
           <li><button className="link-btn" onClick={() => scrollToSection('contact')}>Contact</button></li>
@@ -110,3 +143,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
