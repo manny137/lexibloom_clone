@@ -22,6 +22,24 @@ const Navbar = () => {
     }
   };
 
+  const handleStartKeyboard = async () => {
+  setLoading(true);
+  try {
+    const response = await fetch("http://127.0.0.1:5000/start-keyboard");
+    const data = await response.json();
+    if (data.status === "success") {
+      alert(data.message);
+    } else {
+      alert("Failed to start keyboard");
+    }
+  } catch (error) {
+    console.error(error);
+    alert("Error connecting to backend");
+  }
+  setLoading(false);
+};
+
+
   // Toggle mobile menu
   useEffect(() => {
     const toggle = document.getElementById('menuToggle');
