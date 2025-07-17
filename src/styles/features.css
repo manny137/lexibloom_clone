@@ -1299,6 +1299,109 @@ css
   font-style: italic;
   color: #cbd5e1;
 }
+.pomodoro-container {
+  background-color: #1c1c2e;
+  padding: 2rem;
+  border-radius: 16px;
+  margin-top: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  color: #f5f5f5;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.pomodoro-container h3 {
+  font-size: 1.4rem;
+  color: #ffd447;
+  margin-bottom: 1rem;
+}
+
+.pomodoro-container .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pomodoro-container .timer-bar {
+  margin: 1rem 0;
+  height: 30px;
+  border-radius: 8px;
+  background: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #111;
+  font-weight: bold;
+}
+
+.pomodoro-container .tasks {
+  margin-top: 1rem;
+}
+
+.pomodoro-container .tasks input {
+  margin: 0.5rem 0;
+  padding: 0.4rem;
+  border: 1px solid #444;
+  border-radius: 6px;
+  width: 70%;
+  background-color: #2f2f45;
+  color: #eee;
+}
+
+.pomodoro-container .tasks button {
+  margin-left: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.pomodoro-container .tasks ul {
+  list-style: none;
+  padding: 0;
+}
+
+.pomodoro-container .tasks li {
+  cursor: pointer;
+  padding: 0.4rem;
+  margin: 0.2rem 0;
+  border-radius: 6px;
+  background-color: #2f2f45;
+}
+
+.pomodoro-container .tasks li.selected {
+  background-color: #ffd447;
+  color: #111;
+  font-weight: bold;
+}
+
+.pomodoro-container .streak {
+  margin-top: 1rem;
+  font-weight: bold;
+  color: #ffd447;
+}
+
+.pomodoro-container .controls {
+  margin-top: 1rem;
+}
+
+.pomodoro-container .controls button {
+  margin-right: 0.5rem;
+  padding: 0.4rem 1rem;
+  background-color: #2196f3;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.pomodoro-container .current-task {
+  margin-top: 1rem;
+  font-style: italic;
+  color: #ffd447;
+}
+
 
 /* features.css */
 

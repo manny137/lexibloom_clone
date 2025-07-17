@@ -5,6 +5,7 @@ import CTASection from '../components/CTASection';
 import TextToSpeech from '../components/TextToSpeech';
 import EyeTracking from '../components/EyeTracking';
 import FlashcardGenerator from '../components/FlashcardGenerator'; // ✅ Include this
+import PomodoroContainer from '../components/PomodoroContainer';
 import '../styles/features.css'; // Ensure this exists
 
 const ADHDFeaturesPage = () => {
@@ -38,6 +39,23 @@ const ADHDFeaturesPage = () => {
         </div>
         <TextToSpeech />
       </section>
+      
+      {/* Pomodoro Learner */}
+<section className="feature-section" id="pomodoro-learner">
+  <div className="feature-header">
+    <div className="feature-info">
+      <h2>Pomodoro Learner</h2>
+      <p>
+        Stay focused with ADHD-friendly Pomodoro learning sessions, integrated with a task list, streak tracker, and minimal mode.
+      </p>
+    </div>
+    <div className="feature-visual">
+      <div className="feature-visual-content">⏳</div>
+    </div>
+  </div>
+  <PomodoroContainer />
+</section>
+
 
       {/* Eye Tracking */}
       <section className="feature-section" id="eye-tracking">
