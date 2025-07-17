@@ -10,21 +10,29 @@ const PomodoroContainer = () => {
   const [minimal, setMinimal] = useState(false);
   const audioRef = useRef();
 
-  useEffect(() => {
-    let timer = null;
-    if (running && timeLeft > 0) {
-      timer = setInterval(() => {
-        setTimeLeft((prev) => prev - 1);
-      }, 1000);
-    } else if (timeLeft === 0) {
-      setRunning(false);
-      setStreak((prev) => prev + 1);
-      if (audioRef.current) {
-        audioRef.current.play();
-      }
-    }
-    return () => clearInterval(timer);
-  }, [running, timeLeft]);
+useEffect(() => {
+  let timer = null;
+
+  if (running && timeLeft > 0) {
+    timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          setRunning(false);
+          setStreak((prevStreak) => prevStreak + 1);
+          if (audioRef.current) {
+            audioRef.current.play();
+          }
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+  }
+
+  return () => clearInterval(timer);
+}, [running, timeLeft]);
+
 
   const formatTime = (seconds) => {
     const m = Math.floor(seconds / 60).toString().padStart(2, '0');
