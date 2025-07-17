@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TextReader from './TextReader';
 
+
 const UploadText = () => {
   const [lines, setLines] = useState([]);
 
@@ -21,10 +22,11 @@ const UploadText = () => {
   return (
     <div>
       {lines.length === 0 ? (
-        <div>
-          <label htmlFor="fileUpload">Upload a .txt file:</label>
-          <input type="file" id="fileUpload" onChange={handleFileChange} />
-        </div>
+       <div className="upload-container">
+  <label htmlFor="fileUpload">Upload a .txt file:</label>
+  <input type="file" id="fileUpload" onChange={handleFileChange} />
+</div>
+
       ) : (
         <TextReader lines={lines} />
       )}

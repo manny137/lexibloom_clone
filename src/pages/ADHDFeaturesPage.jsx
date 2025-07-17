@@ -89,30 +89,6 @@ const ADHDFeaturesPage = () => {
         <FlashcardGenerator />
       </section>
 
-      {/* Focus Mode */}
-      <section className="feature-section">
-        <h2>🧘 Focus Mode</h2>
-        <p>
-          Activate a minimal, distraction-free interface to improve attention and concentration.
-        </p>
-      </section>
-
-      {/* Sticky Highlights */}
-      <section className="feature-section">
-        <h2>📌 Sticky Highlights</h2>
-        <p>
-          Highlight and pin key concepts to help with information retention and orientation.
-        </p>
-      </section>
-
-      {/* Pomodoro Timer */}
-      <section className="feature-section">
-        <h2>⏱ Pomodoro Timer</h2>
-        <p>
-          Break work into timed focus intervals (25 minutes) with breaks in between to boost productivity.
-        </p>
-      </section>
-
       <CTASection />
       <Footer />
     </div>

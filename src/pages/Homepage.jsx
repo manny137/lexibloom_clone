@@ -168,36 +168,57 @@ const HomePage = () => {
   </div>
 </section>
 
-      <section className="features" id="features">
-        <h2>Accessibility Features</h2>
-        <div className="features-grid">
-          <Link to="/features#dyslexia-friendly-reader">
-            <FeatureCard icon="👁️" title="Dyslexia-Friendly Reader" desc="Specially designed reading interface with customizable fonts, spacing, and colors." />
-          </Link>
-          <a href='https://6d6ae154a718.ngrok-free.app/' target="_blank" rel="noopener noreferrer">
-            <FeatureCard icon="✨" title="Text Simplifier" desc="AI-powered text simplification that breaks down complex sentences." />
-          </a>
-          <Link to="/features#text-to-speech">
-            <FeatureCard icon="🔊" title="Text-to-Speech" desc="Natural-sounding voice synthesis that reads aloud with adjustable speed." />
-          </Link>
-          <Link to="/features#ocr-technology">
-            <FeatureCard icon="📷" title="OCR Technology" desc="Advanced OCR extracts text from images and printed material." />
-          </Link>
-          <Link to="/features#eye-tracking">
-            <FeatureCard icon="👀" title="Eye-Tracking" desc="Monitors focus and suggests simplification based on user engagement." />
-          </Link>
-          <Link to="/features#smart-adaptation">
-            <FeatureCard icon="🎯" title="Smart Adaptation" desc="Content adapts layout based on your reading patterns and needs." />
-          </Link>
-        </div>
-      </section>
+    <section className="features" id="features">
+  <h2>Accessibility Features</h2>
+  <div className="features-grid">
+    <Link to="/features#dyslexia-friendly-reader">
+      <FeatureCard icon="👁️" title="Dyslexia-Friendly Reader" desc="Specially designed reading interface with customizable fonts, spacing, and colors." />
+    </Link>
+
+    <a href="https://6d6ae154a718.ngrok-free.app/" target="_blank" rel="noopener noreferrer">
+      <FeatureCard icon="✨" title="Text Simplifier" desc="AI-powered text simplification that breaks down complex sentences." />
+    </a>
+
+    <Link to="/features#text-to-speech">
+      <FeatureCard icon="🔊" title="Text-to-Speech" desc="Natural-sounding voice synthesis that reads aloud with adjustable speed." />
+    </Link>
+
+    <Link to="/features#ocr-technology">
+      <FeatureCard icon="📷" title="OCR Technology" desc="Advanced OCR extracts text from images and printed material." />
+    </Link>
+
+    <Link to="/features#eye-tracking">
+      <FeatureCard icon="👀" title="Eye-Tracking" desc="Monitors focus and suggests simplification based on user engagement." />
+    </Link>
+
+    <Link to="/features#smart-adaptation">
+      <FeatureCard icon="🎯" title="Smart Adaptation" desc="Content adapts layout based on your reading patterns and needs." />
+    </Link>
+
+    <Link to="/low-vision">
+  <FeatureCard icon="🕶️" title="Low Vision Support" desc="Enlarged text and high contrast mode to reduce visual strain." />
+</Link>
+
+
+    <Link to="/adhd#flashcards">
+      <FeatureCard icon="🧠" title="Flashcard Generator" desc="Create flashcards from any paragraph or topic to boost memory retention." />
+    </Link>
+
+    <Link to="/adhd#pomodoro-learner">
+  <FeatureCard icon="⏲️" title="Pomodoro Learner" desc="ADHD-friendly learning sessions with streak tracker and focus tools." />
+</Link>
+
+  </div>
+</section>
+
 
       <section className="about" id="about">
         <div className="about-container">
           <div className="about-content">
             <h2>About Us</h2>
-            <p>Lexibloom is an AI-powered website that makes digital content more accessible for differently abled users.</p>
-            <p>It offers features like a dyslexia-friendly reader, text simplifier, text-to-speech, OCR, and eye-tracking to improve reading, understanding, and engagement.</p>
+            <p>LexiBloom is an AI-powered accessibility platform designed to support differently abled users by tailoring the digital experience to their unique cognitive and visual needs.</p>
+<p>With dedicated modes for Dyslexia, ADHD, Low Vision, and Cognitive Disabilities, LexiBloom offers a personalized toolkit that includes features like a dyslexia-friendly reader, intelligent text simplification, text-to-speech, OCR, visual focus aids (blurring, eye-tracking), high-contrast low vision mode, flashcard-based revision, and Pomodoro timers for focused learning sessions. Our mission is to make digital content more readable, understandable, and engaging for everyone.</p>
+
           </div>
           <div className="about-visual">
             <div className="about-visual-content">
@@ -207,36 +228,36 @@ const HomePage = () => {
         </div>
       </section>
 
-      <div className="feature-benefits">
-        <h3>Benefits for Dyslexic Users</h3>
-        <div className="benefits-grid">
-          <div className="benefit-item">
-            📚
-            <h4>Accessible Text Formats</h4>
-            <p>Custom fonts, spacing, and layout improve clarity and ease of reading.</p>
-          </div>
-          <div className="benefit-item">
-            🧠
-            <h4>Smart Text Simplification</h4>
-            <p>AI simplifies complex words and sentences to improve understanding.</p>
-          </div>
-          <div className="benefit-item">
-            🗣️
-            <h4>Text-to-Speech Support</h4>
-            <p>Natural-sounding voice playback helps with word recognition and fluency.</p>
-          </div>
-          <div className="benefit-item">
-            👁️‍🗨️
-            <h4>Visual Focus Aids</h4>
-            <p>Guided highlighting and eye-tracking reduce distractions and maintain focus.</p>
-          </div>
-          <div className="benefit-item">
-            🎯
-            <h4>Improved Learning Outcomes</h4>
-            <p>Better comprehension, faster reading, and more confidence in academic tasks.</p>
-          </div>
-        </div>
-      </div>
+ <div className="feature-benefits">
+  <h3>Benefits for Cognitive and Dyslexic Users</h3>
+  <div className="benefits-grid">
+    <div className="benefit-item">
+      📚
+      <h4>Accessible Text Formats</h4>
+      <p>Custom fonts, spacing, and high-contrast layouts enhance readability for all users.</p>
+    </div>
+    <div className="benefit-item">
+      🧠
+      <h4>Smart Simplification</h4>
+      <p>AI reduces language complexity to support better comprehension and retention.</p>
+    </div>
+    <div className="benefit-item">
+      🗣️
+      <h4>Text-to-Speech Support</h4>
+      <p>Natural-sounding voice playback boosts fluency and assists users with decoding difficulties.</p>
+    </div>
+    <div className="benefit-item">
+      👁️‍🗨️
+      <h4>Visual Focus Enhancements</h4>
+      <p>Blurring, highlighting, and eye-tracking minimize distractions and direct attention effectively.</p>
+    </div>
+    <div className="benefit-item">
+      🧩
+      <h4>Interactive Learning Tools</h4>
+      <p>Flashcards and Pomodoro sessions improve focus, memory, and productivity through structured learning.</p>
+    </div>
+  </div>
+</div>
 
       <CTASection />
       <Footer />
