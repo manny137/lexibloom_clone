@@ -63,7 +63,7 @@ const FlashcardGenerator = () => {
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
-      <button onClick={generateFlashcards}>Generate 3 Flashcards</button>
+      <button onClick={generateFlashcards}>Generate 5 Flashcards</button>
 
       <div className="flashcard-scroll-container">
         {flashcards.map((card, index) => (

@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import CTASection from '../components/CTASection';
 import '../styles/accessibility.css'; // Make sure the path is correct
+import UploadText from '../components/UploadText';
 
 const LowVisionFeaturesPage = () => {
   // Enable both modes on load
@@ -26,9 +27,15 @@ const LowVisionFeaturesPage = () => {
           </div>
         </section>
 
+        <div>
+        <h2 style={{ textAlign: 'center' }}>Let's get started</h2>
+          <UploadText />
+        </div>
+
         <CTASection />
         <Footer />
       </main>
+
     </div>
   );
 };
