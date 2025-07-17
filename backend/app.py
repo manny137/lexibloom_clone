@@ -16,9 +16,20 @@ def index():
 @app.route("/start-keyboard", methods=["GET"])
 def start_keyboard():
     try:
-        # path to keyboard.py
-        script_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "keyboard.py")
-        subprocess.Popen([sys.executable, script_path])
+        # path to keyboard.py (absolute)
+        backend_dir = os.path.dirname(os.path.abspath(__file__))
+        script_path = os.path.join(backend_dir, "keyboard.py")
+
+        # Use the virtualenv python if available
+        venv_python = os.path.join(
+            backend_dir, "..", "..", ".venv", "Scripts", "python.exe"
+        )
+        if os.path.exists(venv_python):
+            python_exe = venv_python
+        else:
+            python_exe = sys.executable
+
+        subprocess.Popen([python_exe, script_path])
         print("🎹 keyboard.py started.")
         return jsonify({"status": "success", "message": "keyboard.py started"}), 200
     except Exception as e:

@@ -6,6 +6,8 @@ import '../styles/home.css';
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
 
   const [theme, setTheme] = useState(() =>
     localStorage.getItem('theme') || 'dark'
@@ -18,6 +20,7 @@ const Navbar = () => {
     if (path.includes('features')) return 'dyslexia';
     return null; // 🏠 homepage
   });
+
 
   useEffect(() => {
     // Set theme class on <body>
@@ -66,20 +69,24 @@ const Navbar = () => {
     return '/features';
   };
 
-  const handleStartKeyboard = async () => {
-    try {
-      const response = await fetch("http://127.0.0.1:5000/start-keyboard");
-      const data = await response.json();
-      if (data.status === "success") {
-        alert(data.message);
-      } else {
-        alert("Failed to start keyboard");
-      }
-    } catch (error) {
-      console.error(error);
-      alert("Error connecting to backend");
+ const handleStartKeyboard = async () => {
+  setLoading(true);
+  try {
+    const response = await fetch("http://127.0.0.1:5000/start-keyboard");
+    const data = await response.json();
+    if (data.status === "success") {
+      alert(data.message);
+    } else {
+      alert("Failed to start keyboard");
     }
-  };
+  } catch (error) {
+    console.error(error);
+    alert("Error connecting to backend");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   useEffect(() => {
     const toggle = document.getElementById('menuToggle');
@@ -126,7 +133,26 @@ const Navbar = () => {
           <li><button className="link-btn" onClick={() => scrollToSection('mode-selector')}>Modes</button></li>
           <li><button className="link-btn" onClick={() => scrollToSection('about')}>About</button></li>
           <li><button className="link-btn" onClick={() => scrollToSection('contact')}>Contact</button></li>
-          <li>
+         <li>
+            <button
+              className="link-btn"
+              onClick={handleStartKeyboard}
+              disabled={loading}
+              style={{
+                backgroundColor: '#4CAF50',
+                color: '#fff',
+                border: 'none',
+                borderRadius: '4px',
+                padding: '6px 10px',
+                cursor: loading ? 'not-allowed' : 'pointer',
+                marginLeft: '8px'
+              }}
+            >
+              {loading ? 'Starting...' : 'Start Keyboard'}
+            </button>
+          </li>
+         <li>
+
             <button className="theme-toggle-btn" onClick={toggleTheme}>
               {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
             </button>
@@ -143,4 +169,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

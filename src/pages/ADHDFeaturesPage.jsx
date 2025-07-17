@@ -4,64 +4,95 @@ import Footer from '../components/Footer';
 import CTASection from '../components/CTASection';
 import TextToSpeech from '../components/TextToSpeech';
 import EyeTracking from '../components/EyeTracking';
+import FlashcardGenerator from '../components/FlashcardGenerator'; // ✅ Include this
+import '../styles/features.css'; // Ensure this exists
 
 const ADHDFeaturesPage = () => {
   return (
     <div className="adhd-mode dark">
       <Navbar />
+
+      {/* Hero Section */}
       <section className="hero">
         <div className="hero-content">
           <h1>ADHD-Focused Tools</h1>
-          <p>Stay engaged and reduce distractions with features designed for attention support.</p>
+          <p>
+            Stay engaged and reduce distractions with features designed for attention support.
+          </p>
         </div>
       </section>
-       <section className="feature-section" id="text-to-speech">
-          <div className="feature-header">
-            <div className="feature-info">
-              <h2>Text-to-Speech</h2>
-              <p>
-                Let LexiBloom read the text aloud for you! Upload or enter text and
-                listen to it spoken clearly, helping users with reading difficulties or for convenience.
-              </p>
-            </div>
-            <div className="feature-visual">
-              <div className="feature-visual-content">🔊</div>
-            </div>
-          </div>
-          <TextToSpeech />
-        </section>
-        <section className="feature-section" id="eye-tracking">
-          <div className="feature-header">
-            <div className="feature-info">
-              <h2>Eye Tracking & Focus Detection</h2>
-              <p>
-                LexiBloom uses camera-based eye-tracking to monitor your gaze and attention while reading.
-              </p>
-            </div>
-          
-            <div className="feature-visual">
-              <div className="feature-visual-content">👁️</div>
-            </div>
-          </div>
-          
-          <EyeTracking />
-        </section>
-      
 
+      {/* Text to Speech */}
+      <section className="feature-section" id="text-to-speech">
+        <div className="feature-header">
+          <div className="feature-info">
+            <h2>🔊 Text-to-Speech</h2>
+            <p>
+              Let LexiBloom read the text aloud for you! Upload or enter text and
+              listen to it spoken clearly—ideal for users with attention or reading difficulties.
+            </p>
+          </div>
+          <div className="feature-visual">
+            <div className="feature-visual-content">🔊</div>
+          </div>
+        </div>
+        <TextToSpeech />
+      </section>
 
+      {/* Eye Tracking */}
+      <section className="feature-section" id="eye-tracking">
+        <div className="feature-header">
+          <div className="feature-info">
+            <h2>👁 Eye Tracking & Focus Detection</h2>
+            <p>
+              LexiBloom uses webcam-based eye-tracking to monitor focus and maintain attention during reading.
+            </p>
+          </div>
+          <div className="feature-visual">
+            <div className="feature-visual-content">👁</div>
+          </div>
+        </div>
+        <EyeTracking />
+      </section>
+
+      {/* Flashcard Generator */}
+      <section className="feature-section" id="flashcards">
+        <div className="feature-header">
+          <div className="feature-info">
+            <h2>🧠 Flashcard Generator</h2>
+            <p>
+              Enter a topic or paragraph and generate quick study flashcards to improve memory retention.
+            </p>
+          </div>
+          <div className="feature-visual">
+            <div className="feature-visual-content">🃏</div>
+          </div>
+        </div>
+        <FlashcardGenerator />
+      </section>
+
+      {/* Focus Mode */}
       <section className="feature-section">
         <h2>🧘 Focus Mode</h2>
-        <p>Minimal interface to avoid distractions and maintain attention while reading or working.</p>
+        <p>
+          Activate a minimal, distraction-free interface to improve attention and concentration.
+        </p>
       </section>
 
+      {/* Sticky Highlights */}
       <section className="feature-section">
         <h2>📌 Sticky Highlights</h2>
-        <p>Highlight and pin important content to stay oriented.</p>
+        <p>
+          Highlight and pin key concepts to help with information retention and orientation.
+        </p>
       </section>
 
+      {/* Pomodoro Timer */}
       <section className="feature-section">
-        <h2>⏱️ Pomodoro Timer</h2>
-        <p>Break down tasks into focused intervals with rest in between.</p>
+        <h2>⏱ Pomodoro Timer</h2>
+        <p>
+          Break work into timed focus intervals (25 minutes) with breaks in between to boost productivity.
+        </p>
       </section>
 
       <CTASection />
@@ -70,4 +101,4 @@ const ADHDFeaturesPage = () => {
   );
 };
 
-export default ADHDFeaturesPage; 
+export default ADHDFeaturesPage;
