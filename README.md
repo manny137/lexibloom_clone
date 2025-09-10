@@ -69,7 +69,7 @@ npm install
 # Run development server
 npm start
 
-🤝 Contributing
+# 🤝 Contributing
 
 We welcome contributions! 🌸
 
@@ -81,12 +81,12 @@ Commit your changes
 
 Open a pull request
 
-📧 Contact
+# 📧 Contact
 
 For queries or collaborations, reach out to us:
 
 Team LexiBloom
 
-⭐ Support
+# ⭐ Support
 
 If you like this project, consider giving it a star ⭐ on GitHub to support our mission of making technology more accessible.
