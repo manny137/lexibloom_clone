@@ -1,8 +1,8 @@
-🌸 LexiBloom – Blooming Accessibility with AI
+# 🌸 LexiBloom – Blooming Accessibility with AI
 
 LexiBloom is an AI-powered accessibility platform designed to empower individuals with Dyslexia, ADHD, and Low Vision by making digital reading and interaction more inclusive. Our mission is to ensure that accessibility is not a privilege but a right, enabling everyone to learn, create, and communicate without barriers.
 
-🚀 Features
+# 🚀 Features
 
 ✨ Multi-Mode Accessibility
 
@@ -36,7 +36,7 @@ Integration Phase → AI-driven personalization engine + eye-controlled virtual 
 
 Deployment Phase → Web/mobile optimization, user testing, and scalable release.
 
-📂 Tech Stack
+# 📂 Tech Stack
 
 Frontend: React.js, Tailwind CSS
 
@@ -48,7 +48,7 @@ AI/ML: Python (NLP for text restructuring, personalization engine)
 
 Other Tools: Web Speech API, OpenCV (for eye-tracking prototype)
 
-🌍 Impact
+# 🌍 Impact
 
 Empowers neurodiverse learners and professionals.
 
